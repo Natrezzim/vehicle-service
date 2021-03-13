@@ -2,11 +2,12 @@ package ru.study.vehicleservice.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import ru.study.vehicleservice.dto.Vehicle;
-import ru.study.vehicleservice.repository.VedicleDTO;
-
+import ru.study.vehicleservice.service.VehicleServiceImpl;
 import java.util.List;
 
 
@@ -14,22 +15,13 @@ import java.util.List;
 @RequestMapping("/vehicles")
 public class VehiclesController {
 
-@Autowired
-    VedicleDTO vedicleDTO;
+   @Autowired
+   VehicleServiceImpl vehicleService;
 
-
-
-@RequestMapping(method = RequestMethod.GET)
-
-
-    public List<Vehicle> getVehicles(){
-    List<Vehicle> list = vedicleDTO.getAllVehicles();
-    return list;
-}
-
-
-    
-
-
+    @RequestMapping(method = RequestMethod.GET)
+    @ResponseBody
+    public List<Vehicle> getAll(){
+        return vehicleService.getAll();
+    }
 
 }
