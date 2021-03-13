@@ -1,9 +1,11 @@
 package ru.study.vehicleservice.repository;
 
 
+import ru.study.vehicleservice.dto.Vehicle;
+
+import java.util.List;
+
 public interface VehicleRepository {
 
-    private static void initVehs() {
-
-    }
+    List<Vehicle> getAll();
 }

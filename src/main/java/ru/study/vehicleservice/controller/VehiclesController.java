@@ -3,11 +3,9 @@ package ru.study.vehicleservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import ru.study.vehicleservice.dto.Vehicle;
-import ru.study.vehicleservice.service.VehicleServiceImpl;
+import ru.study.vehicleservice.service.VehicleService;
 import java.util.List;
 
 
@@ -16,10 +14,9 @@ import java.util.List;
 public class VehiclesController {
 
    @Autowired
-   VehicleServiceImpl vehicleService;
+   VehicleService vehicleService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    @ResponseBody
+    @RequestMapping
     public List<Vehicle> getAll(){
         return vehicleService.getAll();
     }
