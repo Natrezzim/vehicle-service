@@ -23,6 +23,7 @@ public class VehicleRepositoryImpl implements VehicleRepository {
         vehList.add(vhc3);
     }
 
+    @Override
     public List<Vehicle> getAll() {
         return vehList;
     }
