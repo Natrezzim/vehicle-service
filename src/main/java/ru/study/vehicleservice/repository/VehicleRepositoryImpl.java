@@ -1,6 +1,7 @@
 package ru.study.vehicleservice.repository;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Repository;
 import ru.study.vehicleservice.dto.Vehicle;
 import javax.annotation.PostConstruct;
@@ -10,7 +11,7 @@ import java.util.List;
 @Repository
 public class VehicleRepositoryImpl implements VehicleRepository {
 
-    private static final List<Vehicle> vehList = new ArrayList<Vehicle>();
+    private static final List<Vehicle> vehList = new ArrayList<>();
 
     @PostConstruct
     private static void initVehicles() {

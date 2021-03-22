@@ -16,7 +16,7 @@ public class VehiclesController {
    @Autowired
    VehicleService vehicleService;
 
-    @RequestMapping(value = "/vehicles", method = RequestMethod.GET)
+    @RequestMapping(value = "/vehicles/list", method = RequestMethod.GET)
     public List<Vehicle> getAll(){
         return vehicleService.getAll();
     }
