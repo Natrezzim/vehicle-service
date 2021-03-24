@@ -14,7 +14,7 @@ public class VehiclesController {
     private VehicleService vehicleService;
 
     @Autowired
-    public void setDependency(VehicleService vehicleService){
+    public void setVehicleService(VehicleService vehicleService){
            this.vehicleService = vehicleService;
     }
 
