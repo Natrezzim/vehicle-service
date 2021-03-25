@@ -1,4 +1,4 @@
-package ru.study.vehicleservice;
+package ru.study.vehicleservice.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
