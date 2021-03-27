@@ -1,17 +1,22 @@
 package ru.study.vehicleservice.repository;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import ru.study.vehicleservice.dto.Vehicle;
 
 import javax.annotation.PostConstruct;
-import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 public class VehicleRepositoryImpl implements VehicleRepository {
 
     private static final List<Vehicle> vehList = new ArrayList<>();
+
+    Logger logger = LoggerFactory.getLogger(VehicleRepositoryImpl.class);
 
     @PostConstruct
     private static void initVehicles() {
@@ -26,7 +31,7 @@ public class VehicleRepositoryImpl implements VehicleRepository {
 
     @Override
     public List<Vehicle> getAll() {
+        logger.info("{} row(s) has found", vehList.size());
         return vehList;
     }
-
 }

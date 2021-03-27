@@ -1,10 +1,10 @@
 package ru.study.vehicleservice.controller;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import ru.study.vehicleservice.dto.Vehicle;
 import ru.study.vehicleservice.service.VehicleService;
 
@@ -15,11 +15,7 @@ import java.util.List;
 @RequestMapping(value = "/vehicles")
 public class VehiclesController {
 
-
     private VehicleService vehicleService;
-
-
-    Logger logger = LoggerFactory.getLogger(VehicleService.class);
 
     @Autowired
     public void setVehicleService(VehicleService vehicleService) {
@@ -29,9 +25,6 @@ public class VehiclesController {
     @RequestMapping("/list")
     @GetMapping
     public List<Vehicle> getAll() {
-        logger.info("3 row(s) was found");
         return vehicleService.getAll();
     }
-
-
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ru.study.vehicleservice.controller.VehiclesController;
 import ru.study.vehicleservice.dto.Vehicle;
 import ru.study.vehicleservice.repository.VehicleRepository;
+import ru.study.vehicleservice.repository.VehicleRepositoryImpl;
 
 import java.util.List;
 
@@ -17,12 +18,17 @@ import java.util.List;
 public class VehicleServiceImpl implements VehicleService {
 
 
+
+
+
+
     @Autowired
     VehicleRepository vehicleRepository;
 
 
     @Override
     public List<Vehicle> getAll() {
+
         return vehicleRepository.getAll();
     }
 
