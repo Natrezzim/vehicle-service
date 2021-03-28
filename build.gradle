@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.4.3'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id 'checkstyle'
 }
 
 group = 'ru.study'
@@ -21,8 +22,13 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
 }
 
 test {
     useJUnitPlatform()
+}
+
+tasks.withType(Checkstyle) {
+    configFile file('src/main/resources/checkstyle/checkstyle.xml')
 }
