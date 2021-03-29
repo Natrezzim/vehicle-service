@@ -10,7 +10,6 @@ public class AppConfig {
 
   @Bean
   public ObjectMapper jacksonObjectMapper() {
-    return new ObjectMapper().setPropertyNamingStrategy(
-        PropertyNamingStrategy.SNAKE_CASE);
+    return new ObjectMapper().setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
   }
 }

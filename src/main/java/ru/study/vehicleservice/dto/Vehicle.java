@@ -4,29 +4,35 @@ import java.util.UUID;
 
 public class Vehicle {
 
-
   private String grnz;
   private String grnzCountryCode;
-  private Integer vehicleClassID;
-  private UUID vehicleUUID;
+  private Integer vehicleClassId;
+  private UUID vehicleUuid;
   private Integer id;
   private String status;
   private String vehicleClassCode;
-  private Integer brandID;
-  private Integer modelID;
+  private Integer brandId;
+  private Integer modelId;
 
-
-  public Vehicle(String grnz, String grnzCountryCode, Integer vehicleClassID, UUID vehicleUUID,
-      Integer id, String status, String vehicleClassCode, Integer brandID, Integer modelID) {
+  public Vehicle(
+      String grnz,
+      String grnzCountryCode,
+      Integer vehicleClassId,
+      UUID vehicleUuid,
+      Integer id,
+      String status,
+      String vehicleClassCode,
+      Integer brandId,
+      Integer modelId) {
     this.grnz = grnz;
     this.grnzCountryCode = grnzCountryCode;
-    this.vehicleClassID = vehicleClassID;
-    this.vehicleUUID = vehicleUUID;
+    this.vehicleClassId = vehicleClassId;
+    this.vehicleUuid = vehicleUuid;
     this.id = id;
     this.status = status;
     this.vehicleClassCode = vehicleClassCode;
-    this.brandID = brandID;
-    this.modelID = modelID;
+    this.brandId = brandId;
+    this.modelId = modelId;
   }
 
   public String getGrnz() {
@@ -45,20 +51,20 @@ public class Vehicle {
     this.grnzCountryCode = grnzCountryCode;
   }
 
-  public Integer getVehicleClassID() {
-    return vehicleClassID;
+  public Integer getVehicleClassId() {
+    return vehicleClassId;
   }
 
-  public void setVehicleClassID(Integer vehicleClassID) {
-    this.vehicleClassID = vehicleClassID;
+  public void setVehicleClassId(Integer vehicleClassId) {
+    this.vehicleClassId = vehicleClassId;
   }
 
-  public UUID getVehicleUUID() {
-    return vehicleUUID;
+  public UUID getVehicleUuid() {
+    return vehicleUuid = UUID.randomUUID();
   }
 
-  public void setVehicleUUID(UUID vehicleUUID) {
-    this.vehicleUUID = UUID.randomUUID();
+  public void setVehicleUuid(UUID vehicleUuid) {
+    this.vehicleUuid = vehicleUuid;
   }
 
   public Integer getId() {
@@ -85,19 +91,19 @@ public class Vehicle {
     this.vehicleClassCode = vehicleClassCode;
   }
 
-  public Integer getBrandID() {
-    return brandID;
+  public Integer getBrandId() {
+    return brandId;
   }
 
-  public void setBrandID(Integer brandID) {
-    this.brandID = brandID;
+  public void setBrandId(Integer brandId) {
+    this.brandId = brandId;
   }
 
-  public Integer getModelID() {
-    return modelID;
+  public Integer getModelId() {
+    return modelId;
   }
 
-  public void setModelID(Integer modelID) {
-    this.modelID = modelID;
+  public void setModelId(Integer modelId) {
+    this.modelId = modelId;
   }
 }
