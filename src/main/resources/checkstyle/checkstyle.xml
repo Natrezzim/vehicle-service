@@ -13,6 +13,8 @@
     Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
  -->
 
+
+
 <module name="Checker">
   <module name="BeforeExecutionExclusionFileFilter">
     <property name="fileNamePattern" value="module\-info\.java$"/>
@@ -25,10 +27,12 @@
   </module>
   <!-- Excludes all 'module-info.java' files              -->
   <!-- See https://checkstyle.org/config_filefilters.html -->
+
   <module name="FileTabCharacter">
     <property name="eachLine" value="true"/>
   </module>
   <!-- https://checkstyle.org/config_filters.html#SuppressionFilter -->
+
   <module name="LineLength">
     <property name="fileExtensions" value="java"/>
     <property name="max" value="120"/>

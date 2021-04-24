@@ -276,6 +276,16 @@
         <table_constraint>
             <constraint_catalog></constraint_catalog>
             <constraint_schema>public</constraint_schema>
+            <constraint_name>brands_name_key</constraint_name>
+            <constraint_type>UNIQUE</constraint_type>
+            <table_catalog></table_catalog>
+            <table_schema>public</table_schema>
+            <table_name>brands</table_name>
+            <enforced>true</enforced>
+        </table_constraint>
+        <table_constraint>
+            <constraint_catalog></constraint_catalog>
+            <constraint_schema>public</constraint_schema>
             <constraint_name>brands_pkey</constraint_name>
             <constraint_type>PRIMARY KEY</constraint_type>
             <table_catalog></table_catalog>
@@ -286,11 +296,31 @@
         <table_constraint>
             <constraint_catalog></constraint_catalog>
             <constraint_schema>public</constraint_schema>
+            <constraint_name>models_name_key</constraint_name>
+            <constraint_type>UNIQUE</constraint_type>
+            <table_catalog></table_catalog>
+            <table_schema>public</table_schema>
+            <table_name>models</table_name>
+            <enforced>true</enforced>
+        </table_constraint>
+        <table_constraint>
+            <constraint_catalog></constraint_catalog>
+            <constraint_schema>public</constraint_schema>
             <constraint_name>models_pkey</constraint_name>
             <constraint_type>PRIMARY KEY</constraint_type>
             <table_catalog></table_catalog>
             <table_schema>public</table_schema>
             <table_name>models</table_name>
+            <enforced>true</enforced>
+        </table_constraint>
+        <table_constraint>
+            <constraint_catalog></constraint_catalog>
+            <constraint_schema>public</constraint_schema>
+            <constraint_name>vehicle_class_codes_code_key</constraint_name>
+            <constraint_type>UNIQUE</constraint_type>
+            <table_catalog></table_catalog>
+            <table_schema>public</table_schema>
+            <table_name>vehicle_class_codes</table_name>
             <enforced>true</enforced>
         </table_constraint>
         <table_constraint>
@@ -356,6 +386,16 @@
     </table_constraints>
     <key_column_usages>
         <key_column_usage>
+            <column_name>name</column_name>
+            <constraint_catalog></constraint_catalog>
+            <constraint_schema>public</constraint_schema>
+            <constraint_name>brands_name_key</constraint_name>
+            <ordinal_position>1</ordinal_position>
+            <table_catalog></table_catalog>
+            <table_schema>public</table_schema>
+            <table_name>brands</table_name>
+        </key_column_usage>
+        <key_column_usage>
             <column_name>id</column_name>
             <constraint_catalog></constraint_catalog>
             <constraint_schema>public</constraint_schema>
@@ -366,6 +406,16 @@
             <table_name>brands</table_name>
         </key_column_usage>
         <key_column_usage>
+            <column_name>name</column_name>
+            <constraint_catalog></constraint_catalog>
+            <constraint_schema>public</constraint_schema>
+            <constraint_name>models_name_key</constraint_name>
+            <ordinal_position>1</ordinal_position>
+            <table_catalog></table_catalog>
+            <table_schema>public</table_schema>
+            <table_name>models</table_name>
+        </key_column_usage>
+        <key_column_usage>
             <column_name>id</column_name>
             <constraint_catalog></constraint_catalog>
             <constraint_schema>public</constraint_schema>
@@ -374,6 +424,16 @@
             <table_catalog></table_catalog>
             <table_schema>public</table_schema>
             <table_name>models</table_name>
+        </key_column_usage>
+        <key_column_usage>
+            <column_name>code</column_name>
+            <constraint_catalog></constraint_catalog>
+            <constraint_schema>public</constraint_schema>
+            <constraint_name>vehicle_class_codes_code_key</constraint_name>
+            <ordinal_position>1</ordinal_position>
+            <table_catalog></table_catalog>
+            <table_schema>public</table_schema>
+            <table_name>vehicle_class_codes</table_name>
         </key_column_usage>
         <key_column_usage>
             <column_name>id</column_name>

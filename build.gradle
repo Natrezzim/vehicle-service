@@ -12,7 +12,7 @@ plugins {
 
 
 group = 'ru.study'
-version = '1.0.0'
+version = '1.0.0-SNAPSHOT'
 
 configurations {
     compileOnly {
@@ -25,12 +25,12 @@ repositories {
 }
 
 dependencies {
-    // Spring
-    implementation "org.springframework.boot:spring-boot-starter-web:$spring_boot_starter_web"
-    testImplementation "org.springframework.boot:spring-boot-starter-test:$spring_boot_starter_test"
     // jooq
     jooqGenerator "org.postgresql:postgresql:$postgresql_version"
     implementation "org.jooq:jooq:$jooq_version"
+    // Spring
+    implementation "org.springframework.boot:spring-boot-starter-web:$spring_boot_starter_web"
+    testImplementation "org.springframework.boot:spring-boot-starter-test:$spring_boot_starter_test"
 
 }
 
@@ -40,16 +40,8 @@ test {
 
 tasks.withType(Checkstyle) {
     configFile file('src/main/resources/checkstyle/checkstyle.xml')
+    exclude '**/jooq/**'
 }
-
-sourceSets {
-    main {
-        java {
-            exclude '**/jooq/**'
-        }
-    }
-}
-
 
 
 jooq {
