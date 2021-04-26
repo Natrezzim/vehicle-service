@@ -12,7 +12,7 @@ plugins {
 
 
 group = 'ru.study'
-version = '1.0.0-SNAPSHOT'
+version = '1.0.0'
 
 configurations {
     compileOnly {
@@ -25,11 +25,12 @@ repositories {
 }
 
 dependencies {
+    // main
+    implementation "org.springframework.boot:spring-boot-starter-web:$spring_boot_starter_web"
     // jooq
     jooqGenerator "org.postgresql:postgresql:$postgresql_version"
     implementation "org.jooq:jooq:$jooq_version"
-    // Spring
-    implementation "org.springframework.boot:spring-boot-starter-web:$spring_boot_starter_web"
+    //tests
     testImplementation "org.springframework.boot:spring-boot-starter-test:$spring_boot_starter_test"
 
 }
