@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Jooq ###
+/src/main/java/generated/
