@@ -9,11 +9,11 @@ import ru.study.vehicleservice.repository.VehicleRepository;
 @Service
 public class VehicleServiceImpl implements VehicleService {
 
-  @Autowired VehicleRepository vehicleRepository;
+  @Autowired
+  VehicleRepository vehicleRepository;
 
   @Override
   public List<Vehicle> getAll() {
-
     return vehicleRepository.getAll();
   }
 }

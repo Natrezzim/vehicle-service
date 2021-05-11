@@ -14,7 +14,6 @@
  -->
 
 
-
 <module name="Checker">
   <module name="BeforeExecutionExclusionFileFilter">
     <property name="fileNamePattern" value="module\-info\.java$"/>
