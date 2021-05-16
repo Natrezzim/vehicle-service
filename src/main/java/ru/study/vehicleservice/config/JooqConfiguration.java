@@ -12,13 +12,11 @@ import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
 @Configuration
 public class JooqConfiguration {
 
-  @Autowired
-  private DataSource dataSource;
+  @Autowired private DataSource dataSource;
 
   @Bean
   public DataSourceConnectionProvider connectionProvider() {
-    return new DataSourceConnectionProvider
-        (new TransactionAwareDataSourceProxy(dataSource));
+    return new DataSourceConnectionProvider(new TransactionAwareDataSourceProxy(dataSource));
   }
 
   @Bean
@@ -31,5 +29,4 @@ public class JooqConfiguration {
     jooqConfiguration.set(connectionProvider());
     return jooqConfiguration;
   }
-
 }
