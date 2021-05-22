@@ -5,5 +5,5 @@ import ru.study.vehicleservice.dto.Vehicle;
 
 public interface VehicleService {
 
-  List<Vehicle> getAll();
+  List<Vehicle> getAllVehicles();
 }

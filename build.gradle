@@ -2,7 +2,7 @@ import nu.studer.gradle.jooq.JooqEdition
 
 
 plugins {
-    id 'org.springframework.boot' version '2.4.3'
+    id 'org.springframework.boot' version "$spring_boot_version"
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
     id 'checkstyle'
@@ -26,12 +26,18 @@ repositories {
 
 dependencies {
     // main
-    implementation "org.springframework.boot:spring-boot-starter-web:$spring_boot_starter_web"
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.springframework.boot:spring-boot-starter-jooq"
     // jooq
     jooqGenerator "org.postgresql:postgresql:$postgresql_version"
     implementation "org.jooq:jooq:$jooq_version"
+    //postgres
+    implementation "org.postgresql:postgresql"
+    //lombok
+    compileOnly "org.projectlombok:lombok:$lombok_version"
+    annotationProcessor "org.projectlombok:lombok:$lombok_version"
     //tests
-    testImplementation "org.springframework.boot:spring-boot-starter-test:$spring_boot_starter_test"
+    testImplementation "org.springframework.boot:spring-boot-starter-test:$spring_boot_version"
 
 }
 
