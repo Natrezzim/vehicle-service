@@ -5,16 +5,16 @@ import static org.mockito.Mockito.when;
 import java.util.List;
 import java.util.UUID;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.MockitoAnnotations;
 import ru.study.vehicleservice.dto.Vehicle;
 import ru.study.vehicleservice.jooq.tables.pojos.Vehicles;
 import ru.study.vehicleservice.repository.VehicleRepositoryImpl;
 import ru.study.vehicleservice.service.utility.ConverterService;
 
-@SpringBootTest
 public class VehicleServiceImplTest {
 
   @Mock // Мокаем репозиторий
@@ -26,6 +26,11 @@ public class VehicleServiceImplTest {
   // Тестируемый класс, куда внедряются наши моки
   @InjectMocks
   VehicleServiceImpl service;
+
+  @BeforeEach
+  public void initMocks() {
+    MockitoAnnotations.openMocks(this);
+  }
 
   @Test
   void shouldGetAllVehicles() {
@@ -45,6 +50,8 @@ public class VehicleServiceImplTest {
 
     // Получили результат работы сервиса
     List<Vehicle> result = service.getAllVehicles();
+
+    result.forEach(System.out::println); // чисто для тебя посмотреть что у нас в листе
 
     // Сравниваем ожидаемое значение с результатом работы
     Assertions.assertEquals(expected, result);
