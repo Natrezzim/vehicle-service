@@ -13,12 +13,13 @@ public class VehicleServiceImpl implements VehicleService {
 
   @Autowired
   VehicleRepository vehicleRepository;
+
   @Autowired
   ConverterService converterService;
 
   @Override
   public List<Vehicle> getAllVehicles() {
-    return vehicleRepository.getAllVehicles()
+    return vehicleRepository.findAllVehicles()
         .stream()
         .map(pojo -> converterService.convert(pojo))
         .collect(Collectors.toList());

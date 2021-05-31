@@ -38,9 +38,6 @@ dependencies {
     annotationProcessor "org.projectlombok:lombok:$lombok_version"
     //tests
     testImplementation "org.springframework.boot:spring-boot-starter-test:$spring_boot_version"
-
-
-
 }
 
 test {
