@@ -7,7 +7,6 @@ import java.util.UUID;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import ru.study.vehicleservice.dto.Vehicle;
@@ -20,13 +19,6 @@ public class VehicleServiceImplTest {
   @Mock // Мокаем репозиторий
   VehicleRepositoryImpl vehicleRepository;
 
-  @Mock // мокаем конвертер сервис
-  ConverterService converterService;
-
-  // Тестируемый класс, куда внедряются наши моки
-  @InjectMocks
-  VehicleServiceImpl service;
-
   @BeforeEach
   public void initMocks() {
     MockitoAnnotations.openMocks(this);
@@ -34,6 +26,9 @@ public class VehicleServiceImplTest {
 
   @Test
   void shouldGetAllVehicles() {
+    // Тестируемый класс, куда внедряются наши моки. Репа замоканная, конвертер сервис нет
+    VehicleServiceImpl service = new VehicleServiceImpl(vehicleRepository, new ConverterService());
+
     UUID uuid = UUID.randomUUID();
 
     // Pojo из БД
@@ -41,17 +36,17 @@ public class VehicleServiceImplTest {
     List<Vehicles> vehiclePojoList = List.of(vehiclePojo);
 
     // DTO, которое мы ожидаем от работы сервиса
-    Vehicle vehicle = new Vehicle("1", "2", 2, uuid, 1L, 1, 1);
+    Vehicle vehicle = new Vehicle("grnz", "grnz_country_code", 2, uuid, 1L, 1, 1);
     List<Vehicle> expected = List.of(vehicle);
 
     // Мокаем результат работы БД и конвертер сервиса
     when(vehicleRepository.findAllVehicles()).thenReturn(vehiclePojoList);
-    when(converterService.convert(vehiclePojo)).thenReturn(vehicle);
 
     // Получили результат работы сервиса
     List<Vehicle> result = service.getAllVehicles();
 
-    result.forEach(System.out::println); // чисто для тебя посмотреть что у нас в листе
+    // чисто для тебя посмотреть что у нас в листе
+    result.forEach(System.out::println);
 
     // Сравниваем ожидаемое значение с результатом работы
     Assertions.assertEquals(expected, result);
