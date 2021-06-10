@@ -17,8 +17,8 @@ public class VehicleServiceImpl implements VehicleService {
   ConverterService converterService;
 
   @Override
-  public List<Vehicle> getAllVehicles() {
-    return vehicleRepository.getAllVehicles()
+  public List<Vehicle> findAllVehicles() {
+    return vehicleRepository.findAllVehicles()
         .stream()
         .map(pojo -> converterService.convert(pojo))
         .collect(Collectors.toList());

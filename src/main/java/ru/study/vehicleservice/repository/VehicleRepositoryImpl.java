@@ -10,10 +10,11 @@ import ru.study.vehicleservice.jooq.tables.pojos.Vehicles;
 @Repository
 public class VehicleRepositoryImpl implements VehicleRepository {
 
-  @Autowired DSLContext context;
+  @Autowired
+  DSLContext context;
 
   @Override
-  public List<Vehicles> getAllVehicles() {
+  public List<Vehicles> findAllVehicles() {
     return context.selectFrom(Tables.VEHICLES).fetchInto(Vehicles.class);
   }
 }

@@ -20,7 +20,7 @@ public class VehiclesController {
   }
 
   @GetMapping
-  public List<Vehicle> getAllVehicles() {
-    return vehicleService.getAllVehicles();
+  public List<Vehicle> findAllVehicles() {
+    return vehicleService.findAllVehicles();
   }
 }

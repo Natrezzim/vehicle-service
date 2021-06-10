@@ -5,5 +5,5 @@ import ru.study.vehicleservice.jooq.tables.pojos.Vehicles;
 
 public interface VehicleRepository {
 
-  List<Vehicles> getAllVehicles();
+  List<Vehicles> findAllVehicles();
 }

@@ -1,41 +1,48 @@
 package ru.study.vehicleservice.service;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 import ru.study.vehicleservice.dto.Vehicle;
+import ru.study.vehicleservice.jooq.tables.pojos.Vehicles;
 import ru.study.vehicleservice.repository.VehicleRepositoryImpl;
+import ru.study.vehicleservice.service.utility.ConverterService;
 
+@SpringBootTest
 public class VehicleServiceImplTest {
 
-  @InjectMocks
+  @Mock
   VehicleRepositoryImpl vehicleRepository;
   @Mock
+  ConverterService converterService;
+
+  @InjectMocks
   VehicleServiceImpl vehicleService;
 
-  @BeforeEach
-  public void setup() {
-    MockitoAnnotations.openMocks(this);
-  }
-
   @Test
-  void getAllVehicles() {
-    Vehicle vehicle = new Vehicle("1", "2", 2, UUID.randomUUID(), 1L, 1, 1);
-    List<Vehicle> list = new ArrayList<>();
-    list.add(vehicle);
+  void shouldGetAllVehicles() {
 
-    when(vehicleService.getAllVehicles()).thenReturn(list);
+    Vehicles vehicles = new Vehicles(1L, "grnz", "grnz_country_code", UUID.randomUUID(), 1, 1, 1,
+        true, OffsetDateTime.now());
 
-    //test
+    List<Vehicles> vehiclesList = List.of(vehicles);
 
-    assertFalse(vehicleService.getAllVehicles().isEmpty());
+    Vehicle vehicle = new Vehicle("grnz", "grnz_country_code", 1, UUID.randomUUID(), 1L, 1, 1);
+
+    List<Vehicle> vehicleList = List.of(vehicle);
+
+    when(vehicleRepository.findAllVehicles()).thenReturn(vehiclesList);
+    when(converterService.convert(vehicles)).thenReturn(vehicle);
+
+    assertEquals(vehicleList, vehicleService.findAllVehicles());
+
+
   }
 }
