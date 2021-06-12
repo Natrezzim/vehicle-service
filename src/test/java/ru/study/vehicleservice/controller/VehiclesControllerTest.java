@@ -1,6 +1,5 @@
 package ru.study.vehicleservice.controller;
 
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -28,7 +27,6 @@ import ru.study.vehicleservice.service.VehicleServiceImpl;
 @SpringBootTest
 @AutoConfigureMockMvc
 class VehiclesControllerTest {
-
 
   @Mock
   VehicleServiceImpl vehicleService;
