@@ -7,20 +7,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.study.vehicleservice.dto.Vehicle;
 import ru.study.vehicleservice.service.VehicleService;
+import ru.study.vehicleservice.service.VehicleServiceImpl;
 
 @RestController
 @RequestMapping(value = "/vehicles")
 public class VehiclesController {
 
-  private VehicleService vehicleService;
+  private final VehicleServiceImpl vehicleService;
 
-  @Autowired
-  public void setVehicleService(VehicleService vehicleService) {
+  public VehiclesController(VehicleServiceImpl vehicleService) {
     this.vehicleService = vehicleService;
   }
 
   @GetMapping
-  public List<Vehicle> getAllVehicles() {
-    return vehicleService.getAllVehicles();
+  public List<Vehicle> findAllVehicles() {
+    return vehicleService.findAllVehicles();
   }
 }

@@ -24,7 +24,7 @@ public class VehicleServiceImpl implements VehicleService {
   }
 
   @Override
-  public List<Vehicle> getAllVehicles() {
+  public List<Vehicle> findAllVehicles() {
     return vehicleRepository.findAllVehicles()
         .stream()
         .map(pojo -> converterService.convert(pojo))

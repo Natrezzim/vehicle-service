@@ -14,7 +14,7 @@ CREATE TABLE "vehicles"
     "model_id"           integer,
     "vehicle_classes_id" integer,
     "active"             boolean,
-    "created_at"         timestamp DEFAULT (now())
+    "created_at"         timestamp with time zone DEFAULT (now())
 );
 
 CREATE TABLE "brands"
@@ -52,29 +52,41 @@ ALTER TABLE "models"
 ALTER TABLE "models"
     ADD FOREIGN KEY ("vehicle_classes_id") REFERENCES "vehicle_classes" ("id");
 
-COMMENT ON COLUMN "vehicles"."grnz" IS 'Гос номер';
+COMMENT
+ON COLUMN "vehicles"."grnz" IS 'Гос номер';
 
-COMMENT ON COLUMN "vehicles"."grnz_country_code" IS 'Код региона';
+COMMENT
+ON COLUMN "vehicles"."grnz_country_code" IS 'Код региона';
 
-COMMENT ON COLUMN "vehicles"."vehicle_uuid" IS 'Уникальный uuid ТС';
+COMMENT
+ON COLUMN "vehicles"."vehicle_uuid" IS 'Уникальный uuid ТС';
 
-COMMENT ON COLUMN "vehicles"."brand_id" IS 'Id бренда';
+COMMENT
+ON COLUMN "vehicles"."brand_id" IS 'Id бренда';
 
-COMMENT ON COLUMN "vehicles"."model_id" IS 'Id модели';
+COMMENT
+ON COLUMN "vehicles"."model_id" IS 'Id модели';
 
-COMMENT ON COLUMN "vehicles"."vehicle_classes_id" IS 'Код класса ТС';
+COMMENT
+ON COLUMN "vehicles"."vehicle_classes_id" IS 'Код класса ТС';
 
-COMMENT ON COLUMN "vehicles"."active" IS 'Статус ТС';
+COMMENT
+ON COLUMN "vehicles"."active" IS 'Статус ТС';
 
-COMMENT ON COLUMN "brands"."name" IS 'Название бренда';
+COMMENT
+ON COLUMN "brands"."name" IS 'Название бренда';
 
-COMMENT ON COLUMN "models"."name" IS 'Название модели';
+COMMENT
+ON COLUMN "models"."name" IS 'Название модели';
 
-COMMENT ON COLUMN "models"."brand_id" IS 'Id бренда';
+COMMENT
+ON COLUMN "models"."brand_id" IS 'Id бренда';
 
-COMMENT ON COLUMN "models"."vehicle_classes_id" IS 'Id класса ТС';
+COMMENT
+ON COLUMN "models"."vehicle_classes_id" IS 'Id класса ТС';
 
-COMMENT ON COLUMN "vehicle_classes"."code" IS 'Код класса ТС';
+COMMENT
+ON COLUMN "vehicle_classes"."code" IS 'Код класса ТС';
 
 --------------------------VEHICLES_INSERT-----------------------------------------------------------
 

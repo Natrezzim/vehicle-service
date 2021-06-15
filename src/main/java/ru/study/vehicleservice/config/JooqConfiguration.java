@@ -12,7 +12,8 @@ import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
 @Configuration
 public class JooqConfiguration {
 
-  @Autowired private DataSource dataSource;
+  @Autowired
+  private DataSource dataSource;
 
   @Bean
   public DataSourceConnectionProvider connectionProvider() {

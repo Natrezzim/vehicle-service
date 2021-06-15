@@ -1,54 +1,48 @@
 package ru.study.vehicleservice.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 import ru.study.vehicleservice.dto.Vehicle;
 import ru.study.vehicleservice.jooq.tables.pojos.Vehicles;
 import ru.study.vehicleservice.repository.VehicleRepositoryImpl;
 import ru.study.vehicleservice.service.utility.ConverterService;
 
+@SpringBootTest
 public class VehicleServiceImplTest {
 
-  @Mock // Мокаем репозиторий
+  @Mock
   VehicleRepositoryImpl vehicleRepository;
+  @Mock
+  ConverterService converterService;
 
-  @BeforeEach
-  public void initMocks() {
-    MockitoAnnotations.openMocks(this);
-  }
+  @InjectMocks
+  VehicleServiceImpl vehicleService;
 
   @Test
   void shouldGetAllVehicles() {
-    // Тестируемый класс, куда внедряются наши моки. Репа замоканная, конвертер сервис нет
-    VehicleServiceImpl service = new VehicleServiceImpl(vehicleRepository, new ConverterService());
 
-    UUID uuid = UUID.randomUUID();
+    Vehicles vehicles = new Vehicles(1L, "grnz", "grnz_country_code", UUID.randomUUID(), 1, 1, 1,
+        true, OffsetDateTime.now());
 
-    // Pojo из БД
-    Vehicles vehiclePojo = new Vehicles(1L, "grnz", "grnz_country_code", uuid, 1, 1, 2, true, null);
-    List<Vehicles> vehiclePojoList = List.of(vehiclePojo);
+    List<Vehicles> vehiclesList = List.of(vehicles);
 
-    // DTO, которое мы ожидаем от работы сервиса
-    Vehicle vehicle = new Vehicle("grnz", "grnz_country_code", 2, uuid, 1L, 1, 1);
-    List<Vehicle> expected = List.of(vehicle);
+    Vehicle vehicle = new Vehicle("grnz", "grnz_country_code", 1, UUID.randomUUID(), 1L, 1, 1);
 
-    // Мокаем результат работы БД и конвертер сервиса
-    when(vehicleRepository.findAllVehicles()).thenReturn(vehiclePojoList);
+    List<Vehicle> vehicleList = List.of(vehicle);
 
-    // Получили результат работы сервиса
-    List<Vehicle> result = service.getAllVehicles();
+    when(vehicleRepository.findAllVehicles()).thenReturn(vehiclesList);
+    when(converterService.convert(vehicles)).thenReturn(vehicle);
 
-    // чисто для тебя посмотреть что у нас в листе
-    result.forEach(System.out::println);
+    assertEquals(vehicleList, vehicleService.findAllVehicles());
 
-    // Сравниваем ожидаемое значение с результатом работы
-    Assertions.assertEquals(expected, result);
+
   }
 }
