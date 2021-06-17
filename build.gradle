@@ -28,6 +28,7 @@ dependencies {
     // main
     implementation "org.springframework.boot:spring-boot-starter-web"
     implementation "org.springframework.boot:spring-boot-starter-jooq"
+    implementation 'junit:junit:4.13.1'
     // jooq
     jooqGenerator "org.postgresql:postgresql:$postgresql_version"
     implementation "org.jooq:jooq:$jooq_version"
