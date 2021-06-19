@@ -11,10 +11,17 @@ import ru.study.vehicleservice.service.utility.ConverterService;
 @Service
 public class VehicleServiceImpl implements VehicleService {
 
-  @Autowired
   VehicleRepository vehicleRepository;
-  @Autowired
   ConverterService converterService;
+
+  @Autowired
+  public VehicleServiceImpl(
+      VehicleRepository vehicleRepository,
+      ConverterService converterService
+  ) {
+    this.vehicleRepository = vehicleRepository;
+    this.converterService = converterService;
+  }
 
   @Override
   public List<Vehicle> findAllVehicles() {

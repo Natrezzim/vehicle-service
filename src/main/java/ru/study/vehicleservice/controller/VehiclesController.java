@@ -12,10 +12,10 @@ import ru.study.vehicleservice.service.VehicleService;
 @RequestMapping(value = "/vehicles")
 public class VehiclesController {
 
-  private VehicleService vehicleService;
+  private final VehicleService vehicleService;
 
   @Autowired
-  public void setVehicleService(VehicleService vehicleService) {
+  public VehiclesController(VehicleService vehicleService) {
     this.vehicleService = vehicleService;
   }
 
