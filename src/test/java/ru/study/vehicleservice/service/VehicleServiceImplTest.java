@@ -32,14 +32,14 @@ public class VehicleServiceImplTest {
 
     OffsetDateTime offsetDateTime = OffsetDateTime.now();
 
-    Vehicles vehicles = new Vehicles(1L, "grnz", "grnz_country_code", uuid, 1, 1, 1,
+    Vehicles vehicles = new Vehicles(1L, "C143FL", "166", uuid, 3, 108, 1,
         true, offsetDateTime);
 
     List<Vehicles> vehiclesList = List.of(vehicles);
 
     when(vehicleRepository.findAllVehicles()).thenReturn(vehiclesList);
 
-    Vehicle vehicle = new Vehicle("grnz", "grnz_country_code", 1, uuid, 1L, 1, 1);
+    Vehicle vehicle = new Vehicle("C143FL", "166", 1, uuid, 1L, 3, 108);
 
     List<Vehicle> vehicleList = List.of(vehicle);
 

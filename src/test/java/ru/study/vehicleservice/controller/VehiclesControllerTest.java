@@ -1,6 +1,5 @@
 package ru.study.vehicleservice.controller;
 
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -31,7 +30,9 @@ class VehiclesControllerTest {
   @Test
   void shouldFindAllVehicles() throws Exception {
 
-    Vehicle vehicle = new Vehicle("grnz", "777", 1, UUID.randomUUID(), 1L, 1, 1);
+    UUID uuid = UUID.randomUUID();
+
+    Vehicle vehicle = new Vehicle("C143FL", "166", 1, uuid, 1L, 3, 108);
 
     List<Vehicle> vehicleList = List.of(vehicle);
     when(vehicleService.findAllVehicles()).thenReturn(vehicleList);
