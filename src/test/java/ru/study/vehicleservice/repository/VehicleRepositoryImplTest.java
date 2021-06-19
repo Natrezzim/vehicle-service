@@ -4,6 +4,7 @@ import static org.jooq.SQLDialect.POSTGRES;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
+import java.util.List;
 import org.jooq.DSLContext;
 import org.jooq.Result;
 import org.jooq.impl.DSL;
@@ -44,9 +45,13 @@ class VehicleRepositoryImplTest {
     when(context.selectFrom(Tables.VEHICLES))
         .thenReturn(mockedDsl.selectFrom(Tables.VEHICLES));
 
-    assertEquals(mockedDsl.selectFrom(Tables.VEHICLES).fetchInto(Vehicles.class),
-        vehicleRepository.findAllVehicles());
+    List<Vehicles> mockkVehicles = mockedDsl.selectFrom(Tables.VEHICLES).fetchInto(Vehicles.class);
 
+    List<Vehicles> resultVehicles = vehicleRepository.findAllVehicles();
 
+    assertEquals(mockkVehicles, resultVehicles);
+
+    System.out.printf("Actual result %s\n", resultVehicles);
+    System.out.printf("Expected result %s\n", resultVehicles);
   }
 }
