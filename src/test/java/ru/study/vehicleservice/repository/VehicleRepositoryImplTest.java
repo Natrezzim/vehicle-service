@@ -3,7 +3,6 @@ package ru.study.vehicleservice.repository;
 import static org.jooq.SQLDialect.POSTGRES;
 import static ru.study.vehicleservice.jooq.tables.Vehicles.VEHICLES;
 
-import java.sql.SQLException;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -25,36 +24,29 @@ class VehicleRepositoryImplTest {
 
   @Test
   void shouldFindAllVehicles() {
-    MockConnection connection = new MockConnection(new AllVehiclesMockDataProvider());
+
+    MockConnection connection = new MockConnection(
+        ctx -> {
+          DSLContext context = DSL.using(POSTGRES);
+          Result<VehiclesRecord> recordResult = context.newResult(VEHICLES);
+          recordResult.add(
+              context
+                  .newRecord(Tables.VEHICLES)
+                  .value1(1L)
+                  .value2("C143FL")
+                  .value3("166")
+                  .value4(UUID.randomUUID())
+                  .value5(3)
+                  .value6(108)
+                  .value7(1)
+                  .value8(true)
+                  .value9(OffsetDateTime.now()));
+          return new MockResult[]{(new MockResult(1, recordResult))};
+        }
+
+    );
     DSLContext context = DSL.using(connection, POSTGRES);
     List<Vehicles> vehicles = new VehicleRepositoryImpl(context).findAllVehicles();
-  }
-
-  static class AllVehiclesMockDataProvider implements MockDataProvider {
-
-    @Override
-    public MockResult[] execute(MockExecuteContext ctx) throws SQLException {
-      UUID uuid = UUID.randomUUID();
-      OffsetDateTime offsetDateTime = OffsetDateTime.now();
-
-      DSLContext context = DSL.using(POSTGRES);
-
-      Result<VehiclesRecord> recordResult = context.newResult(VEHICLES);
-
-      recordResult.add(
-          context
-              .newRecord(Tables.VEHICLES)
-              .value1(1L)
-              .value2("C143FL")
-              .value3("166")
-              .value4(uuid)
-              .value5(3)
-              .value6(108)
-              .value7(1)
-              .value8(true)
-              .value9(offsetDateTime));
-
-      return new MockResult[] {(new MockResult(1, recordResult))};
-    }
+    System.out.println(vehicles);
   }
 }
