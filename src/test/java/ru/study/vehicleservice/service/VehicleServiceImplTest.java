@@ -7,9 +7,9 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import ru.study.vehicleservice.dto.Vehicle;
 import ru.study.vehicleservice.jooq.tables.pojos.Vehicles;
 import ru.study.vehicleservice.repository.VehicleRepositoryImpl;
@@ -18,31 +18,32 @@ import ru.study.vehicleservice.service.utility.ConverterService;
 @SpringBootTest
 public class VehicleServiceImplTest {
 
-  @Mock
-  VehicleRepositoryImpl vehicleRepository;
-  @Mock
-  ConverterService converterService;
-
-  @InjectMocks
+  @Autowired
   VehicleServiceImpl vehicleService;
+  @Autowired
+  ConverterService converterService;
+  @MockBean
+  VehicleRepositoryImpl vehicleRepository;
 
   @Test
   void shouldGetAllVehicles() {
 
-    Vehicles vehicles = new Vehicles(1L, "grnz", "grnz_country_code", UUID.randomUUID(), 1, 1, 1,
-        true, OffsetDateTime.now());
+    UUID uuid = UUID.randomUUID();
+
+    OffsetDateTime offsetDateTime = OffsetDateTime.now();
+
+    Vehicles vehicles = new Vehicles(1L, "C143FL", "166", uuid, 3, 108, 1,
+        true, offsetDateTime);
 
     List<Vehicles> vehiclesList = List.of(vehicles);
 
-    Vehicle vehicle = new Vehicle("grnz", "grnz_country_code", 1, UUID.randomUUID(), 1L, 1, 1);
+    when(vehicleRepository.findAllVehicles()).thenReturn(vehiclesList);
+
+    Vehicle vehicle = new Vehicle("C143FL", "166", 1, uuid, 1L, 3, 108);
 
     List<Vehicle> vehicleList = List.of(vehicle);
 
-    when(vehicleRepository.findAllVehicles()).thenReturn(vehiclesList);
-    when(converterService.convert(vehicles)).thenReturn(vehicle);
-
     assertEquals(vehicleList, vehicleService.findAllVehicles());
-
 
   }
 }
